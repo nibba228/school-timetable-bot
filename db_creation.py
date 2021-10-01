@@ -58,7 +58,7 @@ time = [None, ('9:20', '10:05'), ('10:20', '11:05'), ('11:20', '12:05'),
 # ---- Monday ----
 
 monday2 = [
-    ['11в2', 1, 1, None, None, time[i][0], time[i][1]]
+    ['11в2', 1, i, None, None, time[i][0], time[i][1]]
     for i in range(1, len(time) + 1)
     if i <= 6
 ]
