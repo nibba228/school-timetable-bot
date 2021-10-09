@@ -1,4 +1,5 @@
 import os
+
 from aiogram import executor, types
 from aiogram.dispatcher.filters import CommandStart, Text
 
@@ -34,7 +35,7 @@ async def manage_class_data(call: types.CallbackQuery, callback_data: dict):
 
     if not is_registered:
         if letter == '0':
-            letter_keyboard = start_keyboard.get_ketboard_class_letter(num)
+            letter_keyboard = start_keyboard.get_keyboard_class_letter(num)
             await call.message.edit_text('Хорошо! А какая буква?', reply_markup=letter_keyboard)
         elif group == '0':
             group_keyboard = start_keyboard.get_keyboard_group(num, letter)

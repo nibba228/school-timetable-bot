@@ -1,19 +1,9 @@
 import sqlite3
 import os
+from models import Week, Subject, Lesson
 
 
-def fill_in_db():
-    DB_NAME = os.environ['DB_NAME']
-
-    con = sqlite3.connect(f'{DB_NAME}')
-    cur = con.cursor()
-
-    # Create tables
-    with open('script.sql') as file:
-        sql = file.read()
-        cur.executescript(sql)
-
-
+def fill_in_db(session):
     # ---- Week ----
     days = [
         (1, 'Понедельник'),
@@ -22,9 +12,9 @@ def fill_in_db():
         (4, 'Четверг'), 
         (5, 'Пятница')
     ]
+    days = [Week(day_id=id, day_name=name) for id, name in days]
 
-    cur.executemany('insert into week (day_id, day_name) values (?, ?)', days)
-
+    session.add_all(days)
 
     # ---- Subject ----
     subjects_list = [
@@ -43,11 +33,12 @@ def fill_in_db():
         'Физ-ра'
     ]
 
-    subjects_list = [(subj,) for subj in subjects_list]
+    
 
-    subjects = {subjects_list[i][0]: i + 1 for i in range(len(subjects_list))}
+    subjects = {subjects_list[i]: i + 1 for i in range(len(subjects_list))}
+    subjects_list = [Subject(subj_id=id, subj_name=name) for name, id in subjects.items()]
 
-    cur.executemany('insert into subject (subj_name) values (?)', subjects_list)
+    session.add_all(subjects_list)
 
 
     # class day_id les_num subj_id time_start time_end
@@ -200,22 +191,19 @@ def fill_in_db():
 
     # -----------------------
 
-    week_days = [monday, tuesday, wednesday, thursday, friday]
-    week = []
-    for day in week_days:
-        week_day = []
-        for lesson in day:
-            week_day.append(tuple(lesson))
-        week += week_day
+    week = monday + tuesday + wednesday + thursday + friday
 
-
-    cur.executemany(
-        '''
-        insert into lesson(class, day_id, les_num, subj_id, room, time_start, time_end)
-        values (?, ?, ?, ?, ?, ?, ?)
-        ''', week
+    lessons = [Lesson(
+        class_=class_,
+        day_id=day_id,
+        les_num=les_num,
+        subj_id=subj_id,
+        room=room,
+        time_start=time_start,
+        time_end=time_end
     )
+    for class_, day_id, les_num, subj_id, room, time_start, time_end
+    in week]
 
-    con.commit()
-    cur.close()
-    con.close()
+    session.add_all(lessons)
+    session.commit()

@@ -20,7 +20,7 @@ class StartKeyboard:
 
         return keyboard
     
-    def get_ketboard_class_letter(self, num: int):
+    def get_keyboard_class_letter(self, num: int):
         '''Клавиатура для получения буквы класса'''
 
         keyboard = types.InlineKeyboardMarkup(row_width=2)
