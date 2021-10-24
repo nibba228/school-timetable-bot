@@ -1,4 +1,5 @@
 from models import Lesson, Subject
+from loader import Session
 
 
 class Timetable:
@@ -7,7 +8,8 @@ class Timetable:
         self.class_group = class_ + str(group)
         self.weekday = weekday
      
-    def get(self, session) -> list:
+    def get(self) -> list:
+        session = Session()
         timetable = session.query(
                 Lesson.les_num,
                 Subject.subj_name,
@@ -19,5 +21,5 @@ class Timetable:
             Lesson.class_.in_([self.class_, self.class_group]),
             Lesson.day_id == self.weekday).order_by(Lesson.les_num).all()
         
-        
+        session.commit()    
         return timetable

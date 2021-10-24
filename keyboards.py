@@ -46,13 +46,30 @@ class StartKeyboard:
 
 
 class TimetableKeyboard:
-    @staticmethod
-    def get_keyboard():
+    def __init__(self):
+        self.cb = CallbackData('day', 'day_id')
+
+    def get_keyboard(self):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
 
         yesterday = types.KeyboardButton('На вчера')
         tomorrow = types.KeyboardButton('На завтра')
         today = types.KeyboardButton('На сегодня')
+        other = types.KeyboardButton('Другой день')
 
-        keyboard.add(yesterday, tomorrow, today)
+        keyboard.add(yesterday, tomorrow, today, other)
+        return keyboard
+    
+    def get_concrete_day_keyboard(self):
+        '''Клавиатура для получения расписания на конкретный день'''
+
+        keyboard = types.InlineKeyboardMarkup(row_width=3)
+        days = 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница'
+        buttons = []
+
+        for day_id in range(len(days)):
+            buttons.append(types.InlineKeyboardButton(days[day_id], callback_data=self.cb.new(day_id=day_id + 1)))
+        
+        keyboard.add(*buttons)
+
         return keyboard
