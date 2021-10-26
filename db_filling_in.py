@@ -1,6 +1,4 @@
-import sqlite3
-import os
-from models import Week, Subject, Lesson
+from app.models.school import Week, Subject, Lesson
 
 
 def fill_in_db(session):

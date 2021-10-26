@@ -6,8 +6,11 @@ from sqlalchemy.exc import NoResultFound
 
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher
+from aiogram.contrib.fsm_storage.redis import RedisStorage2
 
-from models import Base, Lesson
+
+from app.models import Base
+from app.models.school import Lesson
 from db_filling_in import fill_in_db
 
 
@@ -16,10 +19,15 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
+# Redis
+host = os.environ['REDIS_HOST']
+port = int(os.environ['REDIS_PORT'])
+storage = RedisStorage2(host, port)
+
 # Telegram bot
 TOKEN = os.environ['TOKEN']
 bot = Bot(TOKEN)
-dp = Dispatcher(bot)
+dp = Dispatcher(bot, storage=storage)
 
 # Database
 DB_NAME = os.environ['DB_NAME']
