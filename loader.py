@@ -1,4 +1,5 @@
 import os
+from urllib.parse import urlparse
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -26,28 +27,28 @@ if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
 # Redis
-redis_host = os.environ['REDIS_HOST']
-redis_port = int(os.environ['REDIS_PORT'])
+REDIS_URL = os.environ.get('REDIS_URL')
+redis_url = urlparse(REDIS_URL)
+
 try:
-    storage = RedisStorage2(redis_host, redis_port)
+    storage = RedisStorage2(redis_url.hostname, redis_url.port)
 except:
-    logger.exception('Не удалось подключиться к Redis по {}:{}', redis_host, redis_port)
+    logger.exception('Не удалось подключиться к Redis по {}:{}', redis_url.hostname, redis_url.port)
 else:
     logger.success('Подключение к Redis')
 
 # Telegram bot
-TOKEN = os.environ['TOKEN']
+TOKEN = os.environ.get('BOT_TOKEN')
 bot = Bot(TOKEN)
 dp = Dispatcher(bot, storage=storage)
 
 # PostgreSQL
-params = 'HOST', 'PORT', 'USER', 'PASS'
-host, port, username, password = [os.environ['POSTGRES_' + param] for param in params]
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 try:
-    engine = create_engine(f'postgresql://{username}:{password}@{host}:{port}/timetable')
+    engine = create_engine(DATABASE_URL)
 except:
-    logger.exception('Не удалось подключиться к БД по {}:{}', host, port)
+    logger.exception('Не удалось подключиться к БД')
 else:
     logger.success('Подключение к PostgreSQL')
 
