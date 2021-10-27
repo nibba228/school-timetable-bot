@@ -3,13 +3,15 @@ from aiogram import types
 from aiogram.dispatcher.dispatcher import Dispatcher
 from aiogram.dispatcher.filters import Text
 
-from app.keyboards.timetable import TimetableKeyboard
+from app.keyboards.timetable_keyboard import TimetableKeyboard
 from app.models.user import User
 from app.utils.db_api.users import Users
 from app.utils.db_api.weekdays import WeekDays
-from app.utils.db_api.timetable import Timetable
+from app.utils.db_api.timetable_api import Timetable
+from loader import logger
 
 
+@logger.catch
 def get_timetable(user: User, weekday: int) -> dict:
     '''Возвращает словарь для отправки сообщения с текстом расписания и parse_mode'''
     # get day_name
@@ -36,6 +38,7 @@ def get_timetable(user: User, weekday: int) -> dict:
         }
 
 
+@logger.catch
 async def get_actual_days_timetable(message: types.Message):
     from_id = message.from_user.id
     user = Users.get(from_id)
@@ -66,6 +69,7 @@ async def get_actual_days_timetable(message: types.Message):
         await message.answer('Укажи в каком ты классе! Нажми на /start')
 
 
+@logger.catch
 async def send_concrete_day_timetable(call: types.CallbackQuery, callback_data: dict):
     day_id = int(callback_data['day_id'])
     
@@ -81,6 +85,7 @@ async def send_concrete_day_timetable(call: types.CallbackQuery, callback_data: 
     await call.answer()
 
 
+@logger.catch
 def register_handlers_timetable(dp: Dispatcher):
     dp.register_message_handler(get_actual_days_timetable, Text(['На сегодня', 'На завтра', 'На вчера', 'Другой день'], ignore_case=True))
     dp.register_callback_query_handler(send_concrete_day_timetable, TimetableKeyboard.cb.filter())

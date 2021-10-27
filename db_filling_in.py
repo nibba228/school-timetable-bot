@@ -1,6 +1,8 @@
 from app.models.school import Week, Subject, Lesson
+from loader import logger
 
 
+@logger.catch
 def fill_in_db(session):
     # ---- Week ----
     days = [

@@ -1,5 +1,6 @@
 from loader import Session
 from app.models.user import User
+from loader import logger
 
 
 class Users:
@@ -16,19 +17,29 @@ class Users:
     
     @staticmethod
     def insert(from_id: int, class_: str, group: int) -> None:
-        session = Session()
-        user = User(
-            from_id=from_id,
-            class_=class_,
-            group=group
-        )
-        session.add(user)
-        session.commit()
-        session.close()
+        try:
+            session = Session()
+            user = User(
+                from_id=from_id,
+                class_=class_,
+                group=group
+            )
+            session.add(user)
+            session.commit()
+            session.close()
+        except:
+            logger.exception(f'Ошибка при добавлении пользователя {from_id=}, {class_=}, {group=}')
+        else:
+            logger.info(f'Добавлен пользователь {from_id=}, {class_=}, {group=}')
     
     @staticmethod
     def delete(user: User):
-        session = Session()
-        session.delete(user)
-        session.commit()
-        session.close()
+        try:
+            session = Session()
+            session.delete(user)
+            session.commit()
+            session.close()
+        except:
+            logger.exception('Ошибка при удалении пользователя from_id={}, class_={}, group={}', user.from_id, user.class_, user.group)
+        else:
+            logger.info('Удален пользователь from_id={}, class_={}, group={}', user.from_id, user.class_, user.group)
