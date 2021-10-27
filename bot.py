@@ -7,7 +7,7 @@ from app.handlers.user.base import register_handlers_base
 from app.handlers.user.choosing_class import register_handlers_choosing_class
 from app.handlers.user.timetable import register_handlers_timetable
 
-from loader import dp, bot, logger
+from loader import dp, bot, logger, redis_thread
 
 
 async def set_commands(bot: Bot):
@@ -34,6 +34,7 @@ async def main():
     finally:
         await dp.storage.close()
         await dp.storage.wait_closed()
+        redis_thread.join()
         logger.debug('Бот выключен')
 
 
