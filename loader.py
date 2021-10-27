@@ -1,6 +1,6 @@
 import os
 from urllib.parse import urlparse
-from multiprocessing import Process
+from threading import Thread
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -20,7 +20,6 @@ from logger_config import config
 
 # logger
 logger.configure(**config)
-logger.warning('Не забудьте запустить redis-server!')
 
 # Init environment variables
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
@@ -28,8 +27,9 @@ if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
 # Redis
-redis_thread = Process(name='redis-server', target=lambda: os.system('redis-server'), daemon=True)
+redis_thread = Thread(name='redis-server', target=lambda: os.system('redis-server'), daemon=True)
 redis_thread.start()
+logger.success('redis-server launched')
 
 REDIS_URL = os.environ.get('REDIS_URL')
 redis_url = urlparse(REDIS_URL)

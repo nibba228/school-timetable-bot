@@ -44,3 +44,5 @@
 [28 Oct 2021 | 02:17:31] SUCCESS in loader.py function <module> line 56 :: Подключение к PostgreSQL
 [28 Oct 2021 | 02:17:32] SUCCESS in bot.py function main line 32 :: Бот запущен
 [28 Oct 2021 | 02:23:58] DEBUG in bot.py function main line 38 :: Бот выключен
+[28 Oct 2021 | 02:30:00] WARNING in loader.py function <module> line 23 :: Не забудьте запустить redis-server!
+[28 Oct 2021 | 02:30:01] WARNING in loader.py function <module> line 23 :: Не забудьте запустить redis-server!
