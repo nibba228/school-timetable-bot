@@ -1,6 +1,5 @@
 # Own files
 logger_config.py
-logs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
