@@ -1,0 +1,46 @@
+[28 Oct 2021 | 01:51:30] WARNING in loader.py function <module> line 22 :: Не забудьте запустить redis-server!
+[28 Oct 2021 | 01:51:30] SUCCESS in loader.py function <module> line 38 :: Подключение к Redis
+[28 Oct 2021 | 01:51:30] SUCCESS in loader.py function <module> line 53 :: Подключение к PostgreSQL
+[28 Oct 2021 | 01:51:31] SUCCESS in bot.py function main line 32 :: Бот запущен
+[28 Oct 2021 | 01:51:44] INFO in base.py function start line 23 :: Пользователь 786711981 поменял состояние на <State 'ChoosingClass:choosing_class_num'>
+[28 Oct 2021 | 01:51:48] INFO in users.py function delete line 45 :: Удален пользователь from_id=786711981, class_=11в, group=2
+[28 Oct 2021 | 01:51:53] INFO in base.py function start line 23 :: Пользователь 786711981 поменял состояние на <State 'ChoosingClass:choosing_class_num'>
+[28 Oct 2021 | 01:51:54] INFO in choosing_class.py function choose_class_num line 23 :: Пользователь 786711981 поменял состояние на ChoosingClass:choosing_class_letter
+[28 Oct 2021 | 01:51:55] INFO in choosing_class.py function choose_letter line 43 :: Пользователь 786711981 поменял состояние на ChoosingClass:choosing_class_group
+[28 Oct 2021 | 01:51:56] INFO in users.py function insert line 33 :: Добавлен пользователь from_id=786711981, class_='5в', group=1
+[28 Oct 2021 | 01:52:01] INFO in users.py function delete line 45 :: Удален пользователь from_id=786711981, class_=5в, group=1
+[28 Oct 2021 | 01:52:04] INFO in base.py function start line 23 :: Пользователь 786711981 поменял состояние на <State 'ChoosingClass:choosing_class_num'>
+[28 Oct 2021 | 01:52:05] INFO in choosing_class.py function choose_class_num line 23 :: Пользователь 786711981 поменял состояние на ChoosingClass:choosing_class_letter
+[28 Oct 2021 | 01:52:07] INFO in choosing_class.py function choose_letter line 43 :: Пользователь 786711981 поменял состояние на ChoosingClass:choosing_class_group
+[28 Oct 2021 | 01:52:08] INFO in users.py function insert line 33 :: Добавлен пользователь from_id=786711981, class_='11в', group=1
+[28 Oct 2021 | 01:52:43] INFO in users.py function delete line 45 :: Удален пользователь from_id=786711981, class_=11в, group=1
+[28 Oct 2021 | 01:52:46] INFO in base.py function start line 23 :: Пользователь 786711981 поменял состояние на <State 'ChoosingClass:choosing_class_num'>
+[28 Oct 2021 | 01:52:47] INFO in choosing_class.py function choose_class_num line 23 :: Пользователь 786711981 поменял состояние на ChoosingClass:choosing_class_letter
+[28 Oct 2021 | 01:52:48] INFO in choosing_class.py function choose_letter line 43 :: Пользователь 786711981 поменял состояние на ChoosingClass:choosing_class_group
+[28 Oct 2021 | 01:52:49] INFO in users.py function insert line 33 :: Добавлен пользователь from_id=786711981, class_='11в', group=2
+[28 Oct 2021 | 01:54:45] DEBUG in bot.py function main line 37 :: Бот выключен
+[28 Oct 2021 | 02:03:08] WARNING in loader.py function <module> line 22 :: Не забудьте запустить redis-server!
+[28 Oct 2021 | 02:03:08] SUCCESS in loader.py function <module> line 38 :: Подключение к Redis
+[28 Oct 2021 | 02:03:08] SUCCESS in loader.py function <module> line 53 :: Подключение к PostgreSQL
+[28 Oct 2021 | 02:03:09] SUCCESS in bot.py function main line 32 :: Бот запущен
+[28 Oct 2021 | 02:03:23] DEBUG in bot.py function main line 37 :: Бот выключен
+[28 Oct 2021 | 02:07:51] WARNING in loader.py function <module> line 22 :: Не забудьте запустить redis-server!
+[28 Oct 2021 | 02:07:51] SUCCESS in loader.py function <module> line 38 :: Подключение к Redis
+[28 Oct 2021 | 02:07:51] SUCCESS in loader.py function <module> line 53 :: Подключение к PostgreSQL
+[28 Oct 2021 | 02:07:51] SUCCESS in bot.py function main line 32 :: Бот запущен
+[28 Oct 2021 | 02:08:02] DEBUG in bot.py function main line 37 :: Бот выключен
+[28 Oct 2021 | 02:09:22] WARNING in loader.py function <module> line 22 :: Не забудьте запустить redis-server!
+[28 Oct 2021 | 02:09:22] SUCCESS in loader.py function <module> line 38 :: Подключение к Redis
+[28 Oct 2021 | 02:09:22] SUCCESS in loader.py function <module> line 53 :: Подключение к PostgreSQL
+[28 Oct 2021 | 02:09:23] SUCCESS in bot.py function main line 32 :: Бот запущен
+[28 Oct 2021 | 02:12:54] DEBUG in bot.py function main line 37 :: Бот выключен
+[28 Oct 2021 | 02:13:01] WARNING in loader.py function <module> line 23 :: Не забудьте запустить redis-server!
+[28 Oct 2021 | 02:13:01] SUCCESS in loader.py function <module> line 41 :: Подключение к Redis
+[28 Oct 2021 | 02:13:01] SUCCESS in loader.py function <module> line 56 :: Подключение к PostgreSQL
+[28 Oct 2021 | 02:13:01] SUCCESS in bot.py function main line 32 :: Бот запущен
+[28 Oct 2021 | 02:13:37] DEBUG in bot.py function main line 38 :: Бот выключен
+[28 Oct 2021 | 02:17:31] WARNING in loader.py function <module> line 23 :: Не забудьте запустить redis-server!
+[28 Oct 2021 | 02:17:31] SUCCESS in loader.py function <module> line 41 :: Подключение к Redis
+[28 Oct 2021 | 02:17:31] SUCCESS in loader.py function <module> line 56 :: Подключение к PostgreSQL
+[28 Oct 2021 | 02:17:32] SUCCESS in bot.py function main line 32 :: Бот запущен
+[28 Oct 2021 | 02:23:58] DEBUG in bot.py function main line 38 :: Бот выключен
