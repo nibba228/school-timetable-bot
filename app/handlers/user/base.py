@@ -41,7 +41,7 @@ async def reset(message: types.Message, state: FSMContext):
         await state.finish()
         await message.answer('Класс и группа сброшены')
     else:
-        await message.answer('Ты не зарегистрирован! Чтобы зарегистрироваться, нажми на /start')
+        await message.answer('Ты не зарегистрирован(а)! Чтобы зарегистрироваться, нажми на /start')
 
 
 @logger.catch

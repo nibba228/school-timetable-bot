@@ -26,7 +26,7 @@ async def choose_class_num(call: types.CallbackQuery, state: FSMContext, callbac
     else:
         await state.finish()
         timetable_kb = TimetableKeyboard.get_keyboard()
-        await call.message.answer('Ты уже зарегистрирован!', reply_markup=timetable_kb)
+        await call.message.answer('Ты уже зарегистрирован(а)!', reply_markup=timetable_kb)
 
     await call.answer()
 
