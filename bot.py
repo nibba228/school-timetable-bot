@@ -39,7 +39,9 @@ async def on_startup(dp: Dispatcher):
 async def on_shutdown(dp: Dispatcher):
     await dp.storage.close()
     await dp.storage.wait_closed()
-    redis_thread.join()
+
+
+    
     
     logger.warning('Shutting down bot...')
 

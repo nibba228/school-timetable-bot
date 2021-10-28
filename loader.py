@@ -61,7 +61,6 @@ except:
 else:
     logger.success('Подключение к PostgreSQL')
 
-# SQLAlchemy: set up models
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 
