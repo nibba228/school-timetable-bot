@@ -1,6 +1,7 @@
 import os
 from asyncio import get_event_loop
 from urllib.parse import urlparse
+from threading import Thread
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -27,6 +28,8 @@ if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
 # Redis
+redis_thread = Thread(name='redis-server', target=lambda: os.system('redis-server'), daemon=True)
+redis_thread.start()
 REDIS_URL = os.getenv('REDIS_URL')
 redis_url = urlparse(REDIS_URL)
 
