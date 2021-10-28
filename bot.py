@@ -1,6 +1,5 @@
 from aiogram import Bot
 from aiogram.dispatcher.dispatcher import Dispatcher
-from aiogram.dispatcher.storage import DisabledStorage
 from aiogram.types import BotCommand
 from aiogram.utils.executor import start_webhook
 
@@ -40,9 +39,6 @@ async def on_shutdown(dp: Dispatcher):
     await dp.storage.close()
     await dp.storage.wait_closed()
 
-
-    
-    
     logger.warning('Shutting down bot...')
 
 
