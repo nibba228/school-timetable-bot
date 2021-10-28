@@ -27,10 +27,6 @@ if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
 # Redis
-# redis_thread = Thread(name='redis-server', target=lambda: os.system('redis-server'), daemon=True)
-# redis_thread.start()
-# logger.success('redis-server launched')
-
 REDIS_URL = os.getenv('REDIS_URL')
 redis_url = urlparse(REDIS_URL)
 
@@ -53,6 +49,8 @@ dp = Dispatcher(bot, storage=storage)
 
 # PostgreSQL
 DATABASE_URL = os.getenv('DATABASE_URL')
+if DATABASE_URL and DATABASE_URL.startswith('postgres'):
+    DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
 
 try:
     engine = create_engine(DATABASE_URL)
