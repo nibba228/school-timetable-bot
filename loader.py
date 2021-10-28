@@ -74,4 +74,4 @@ finally:
 
 # Web app
 WEBAPP_HOST = os.getenv('WEBAPP_HOST')
-WEBAPP_PORT = int(os.getenv('WEBAPP_PORT'))
+WEBAPP_PORT = int(os.getenv('PORT', 5000))
