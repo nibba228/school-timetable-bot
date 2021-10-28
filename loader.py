@@ -1,4 +1,5 @@
 import os
+from asyncio import get_event_loop
 from urllib.parse import urlparse
 from threading import Thread
 
@@ -31,7 +32,7 @@ redis_thread = Thread(name='redis-server', target=lambda: os.system('redis-serve
 redis_thread.start()
 logger.success('redis-server launched')
 
-REDIS_URL = os.environ.get('REDIS_URL')
+REDIS_URL = os.getenv('REDIS_URL')
 redis_url = urlparse(REDIS_URL)
 
 try:
@@ -42,12 +43,17 @@ else:
     logger.success('Подключение к Redis')
 
 # Telegram bot
-TOKEN = os.environ.get('BOT_TOKEN')
-bot = Bot(TOKEN)
+WEBHOOK_HOST = os.getenv('WEBHOOK_HOST')
+WEBHOOK_PATH = os.getenv('WEBHOOK_PATH')
+WEBHOOK_URL = f'{WEBHOOK_HOST}{WEBHOOK_PATH}'
+TOKEN = os.getenv('BOT_TOKEN')
+
+loop = get_event_loop()
+bot = Bot(TOKEN, loop=loop)
 dp = Dispatcher(bot, storage=storage)
 
 # PostgreSQL
-DATABASE_URL = os.environ.get('DATABASE_URL')
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 try:
     engine = create_engine(DATABASE_URL)
@@ -68,3 +74,7 @@ except NoResultFound:
     fill_in_db(session)
 finally:
     session.commit()
+
+# Web app
+WEBAPP_HOST = os.getenv('WEBAPP_HOST')
+WEBAPP_PORT = int(os.getenv('WEBAPP_PORT'))
