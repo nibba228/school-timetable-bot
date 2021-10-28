@@ -9,7 +9,7 @@ from app.handlers.user.choosing_class import register_handlers_choosing_class
 from app.handlers.user.timetable import register_handlers_timetable
 
 from loader import (WEBAPP_HOST, WEBAPP_PORT, WEBHOOK_PATH, WEBHOOK_URL,
-                    dp, bot, logger, redis_thread)
+                    dp, bot, logger)
 
 
 async def set_commands(bot: Bot):
@@ -39,7 +39,6 @@ async def on_startup(dp: Dispatcher):
 async def on_shutdown(dp: Dispatcher):
     await dp.storage.close()
     await dp.storage.wait_closed()
-    redis_thread.join()
     
     logger.warning('Shutting down bot...')
 
