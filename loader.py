@@ -18,6 +18,8 @@ from app.models.school import Lesson
 from db_filling_in import fill_in_db
 from logger_config import config
 
+# asyncio loop
+loop = get_event_loop()
 
 # logger
 logger.configure(**config)
@@ -28,13 +30,11 @@ if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
 # Redis
-redis_thread = Thread(name='redis-server', target=lambda: os.system('redis-server'), daemon=True)
-redis_thread.start()
 REDIS_URL = os.getenv('REDIS_URL')
 redis_url = urlparse(REDIS_URL)
 
 try:
-    storage = RedisStorage2(redis_url.hostname, redis_url.port)
+    storage = RedisStorage2(redis_url.hostname, redis_url.port, password=redis_url.password, loop=loop)
 except:
     logger.exception('Не удалось подключиться к Redis по {}:{}', redis_url.hostname, redis_url.port)
 else:
@@ -46,7 +46,6 @@ WEBHOOK_PATH = os.getenv('WEBHOOK_PATH')
 WEBHOOK_URL = f'{WEBHOOK_HOST}{WEBHOOK_PATH}'
 TOKEN = os.getenv('BOT_TOKEN')
 
-loop = get_event_loop()
 bot = Bot(TOKEN, loop=loop)
 dp = Dispatcher(bot, storage=storage)
 
